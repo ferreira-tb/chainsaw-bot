@@ -1,0 +1,14 @@
+{
+  "identifier": "main",
+  "description": "main window",
+  "windows": ["main"],
+  "permissions": [
+    "app:allow-name",
+    "app:allow-version",
+    "event:allow-emit",
+    "event:allow-emit-to",
+    "event:allow-listen",
+    "event:allow-unlisten",
+    "manatsu:default"
+  ]
+}

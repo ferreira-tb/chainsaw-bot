@@ -1,0 +1,52 @@
+{
+  "productName": "tauri-template",
+  "version": "0.11.0",
+  "identifier": "tbdev.tauri-template",
+  "build": {
+    "beforeDevCommand": "pnpm run vite:dev",
+    "beforeBuildCommand": "pnpm run vite:build",
+    "frontendDist": "../dist",
+    "devUrl": "http://localhost:1420"
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ]
+  },
+  "app": {
+    "withGlobalTauri": false,
+    "windows": [
+      {
+        "label": "main",
+        "title": "Tauri Template",
+        "url": "src/windows/main/index.html",
+        "width": 800,
+        "height": 600,
+        "visible": false,
+        "fullscreen": false,
+        "resizable": true,
+        "maximizable": true,
+        "minimizable": true
+      }
+    ],
+    "security": {
+      "assetProtocol": {
+        "scope": ["$APPCACHE/**", "$APPCONFIG/**", "$APPDATA/**"],
+        "enable": true
+      },
+      "csp": {
+        "default-src": "'self'",
+        "connect-src": "http://ipc.localhost",
+        "img-src": "'self' blob: asset: http://asset.localhost",
+        "style-src": "'self' 'unsafe-inline'"
+      }
+    }
+  },
+  "plugins": {}
+}
