@@ -2,11 +2,11 @@ use serde::ser::Serializer;
 use serde::Serialize;
 
 pub mod prelude {
-  pub use super::Result;
+  pub use super::{Error, Result};
 }
 
 pub type Result<T> = std::result::Result<T, Error>;
-pub type BoxResult<T> = std::result::Result<T, Box<dyn std::error::Error>>;
+pub type BoxedResult<T> = std::result::Result<T, Box<dyn std::error::Error>>;
 
 #[derive(Debug, thiserror::Error)]
 pub enum Error {
@@ -16,6 +16,8 @@ pub enum Error {
   Io(#[from] std::io::Error),
   #[error(transparent)]
   Json(#[from] serde_json::Error),
+  #[error(transparent)]
+  Serenity(#[from] serenity::Error),
   #[error(transparent)]
   Tauri(#[from] tauri::Error),
   #[error(transparent)]

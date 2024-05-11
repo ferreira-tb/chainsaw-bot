@@ -1,3 +1,5 @@
+pub mod discord;
+
 use crate::prelude::*;
 
 #[tauri::command]

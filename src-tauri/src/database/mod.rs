@@ -9,7 +9,6 @@ pub mod prelude {
 // use migration::{Migrator, MigratorTrait};
 use crate::prelude::*;
 use sea_orm::{Database, DatabaseConnection};
-use tauri::async_runtime::block_on;
 
 pub fn connect(app: &AppHandle) -> Result<DatabaseConnection> {
   let path = app.path().app_local_data_dir().unwrap();

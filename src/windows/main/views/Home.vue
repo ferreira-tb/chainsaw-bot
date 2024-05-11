@@ -1,12 +1,5 @@
-<script setup lang="ts">
-import { getVersion } from '@tauri-apps/api/app';
-
-const { state: version } = useAsyncState(getVersion, null);
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <main>
-    <h1 v-if="version">Tauri Template {{ version }}</h1>
-    <div>Hello World!</div>
-  </main>
+  <main></main>
 </template>

@@ -1,7 +1,7 @@
 {
-  "productName": "tauri-template",
-  "version": "0.11.0",
-  "identifier": "tbdev.tauri-template",
+  "productName": "chainsaw-bot",
+  "version": "0.1.0",
+  "identifier": "tbdev.chainsawbot",
   "build": {
     "beforeDevCommand": "pnpm run vite:dev",
     "beforeBuildCommand": "pnpm run vite:build",
@@ -24,10 +24,10 @@
     "windows": [
       {
         "label": "main",
-        "title": "Tauri Template",
+        "title": "chainsaw",
         "url": "src/windows/main/index.html",
-        "width": 800,
-        "height": 600,
+        "minWidth": 800,
+        "minHeight": 600,
         "visible": false,
         "fullscreen": false,
         "resizable": true,

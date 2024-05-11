@@ -1,6 +1,6 @@
 [package]
-name = "tauri-template"
-version = "0.11.0"
+name = "chainsaw-bot"
+version = "0.1.0"
 publish = false
 
 [package.edition]
@@ -22,7 +22,15 @@ itertools = "0.12.1"
 rayon = "1.10.0"
 serde_json = "1.0.117"
 tauri-plugin-manatsu = "0.10.5"
+tauri-plugin-store = "2.0.0-beta.6"
 thiserror = "1.0.60"
+
+[dependencies.migration]
+path = "../migration"
+
+[dependencies.poise]
+version = "0.6.1"
+features = ["chrono"]
 
 [dependencies.sea-orm]
 version = "0.12.15"
@@ -31,6 +39,10 @@ features = ["macros", "runtime-tokio-rustls", "sqlx-sqlite"]
 [dependencies.serde]
 version = "1.0.201"
 features = ["derive"]
+
+[dependencies.serenity]
+version = "0.12.1"
+features = ["model"]
 
 [dependencies.strum]
 version = "0.26.2"

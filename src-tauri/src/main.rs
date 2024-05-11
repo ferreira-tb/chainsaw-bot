@@ -1,23 +1,21 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
-
 #![feature(try_blocks)]
 
 mod command;
 pub mod database;
+mod discord;
 mod error;
 mod prelude;
+mod state;
+mod utils;
 
-use error::BoxResult;
-use sea_orm::DatabaseConnection;
+use error::BoxedResult;
+use state::Chainsaw;
 use tauri::{App, Manager};
 
 #[cfg(debug_assertions)]
 use std::sync::OnceLock;
-
-pub struct AppState {
-  pub db: DatabaseConnection,
-}
 
 fn main() {
   #[cfg(debug_assertions)]
@@ -67,18 +65,20 @@ fn main() {
   tauri::Builder::default()
     .plugin(tauri_plugin_http::init())
     .plugin(tauri_plugin_manatsu::init())
+    .plugin(tauri_plugin_store::Builder::new().build())
     .setup(setup)
     .invoke_handler(tauri::generate_handler![
       command::close_window,
-      command::show_window
+      command::show_window,
+      command::discord::connect_discord
     ])
     .run(tauri::generate_context!())
     .expect("error while running tauri application");
 }
 
-fn setup(app: &mut App) -> BoxResult<()> {
+fn setup(app: &mut App) -> BoxedResult<()> {
   let handle = app.handle();
-  let state = AppState {
+  let state = Chainsaw {
     db: database::connect(handle)?,
   };
 
